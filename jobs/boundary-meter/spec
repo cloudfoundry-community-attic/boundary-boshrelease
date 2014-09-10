@@ -8,6 +8,7 @@ templates:
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
+  config/boundary-meter.default.erb: config/boundary-meter.default
 properties:
   boundary_meter.org_id:
     description: Boundary organization ID

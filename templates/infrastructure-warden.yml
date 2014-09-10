@@ -12,19 +12,11 @@ update:
   update_watch_time: 1000-30000
 
 jobs:
-  - name: boundary_leader_z1
+  - name: boundary_z1
     instances: 1
     networks:
       - name: boundary1
-        static_ips: (( static_ips(0) ))
-  - name: boundary_z1
-    instances: 2
-    networks:
-      - name: boundary1
         static_ips: ~
-    properties:
-      boundary:
-        leader_address: (( jobs.boundary_leader_z1.networks.boundary1.static_ips.[0] ))
 
 compilation:
   cloud_properties:

@@ -9,19 +9,11 @@ meta:
     version: latest
 
 jobs:
-  - name: boundary_leader_z1
+  - name: boundary_z1
     instances: 1
     networks:
       - name: boundary1
     persistent_disk: (( meta.persistent_disk ))
-  - name: boundary_z1
-    instances: 2
-    networks:
-      - name: boundary1
-    persistent_disk: (( meta.persistent_disk ))
-    properties:
-      boundary:
-        leader_address: (( "0.boundary-leader-z1.boundary1." meta.environment "." meta.dns_root ))
 
 compilation:
   cloud_properties:

@@ -9,24 +9,16 @@ update:
   serial: false
 
 jobs:
-  - name: boundary_leader_z1
-    template: boundary
-    instances: 0
-    resource_pool: small_z1
-    networks: (( merge ))
-    persistent_disk: 0
-    properties: {}
   - name: boundary_z1
-    template: boundary
+    templates:
+    - name: boundary-meter
+      release: boundary
     instances: 0
     resource_pool: small_z1
     networks: (( merge ))
     persistent_disk: 0
     update:
       canaries: 10
-    properties:
-      boundary:
-        leader_address: (( merge ))
 
 networks: (( merge ))
 

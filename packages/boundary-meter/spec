@@ -1,0 +1,6 @@
+---
+name: boundary-meter
+dependencies: []
+files:
+- apt/boundary-meter/profile.sh
+- apt/boundary-meter/*.deb

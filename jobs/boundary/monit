@@ -1,5 +1,0 @@
-check process boundary
-  with pidfile /var/vcap/sys/run/boundary/boundary.pid
-  start program "/var/vcap/jobs/boundary/bin/monit_debugger boundary_ctl '/var/vcap/jobs/boundary/bin/boundary_ctl start'"
-  stop program "/var/vcap/jobs/boundary/bin/monit_debugger boundary_ctl '/var/vcap/jobs/boundary/bin/boundary_ctl stop'"
-  group vcap

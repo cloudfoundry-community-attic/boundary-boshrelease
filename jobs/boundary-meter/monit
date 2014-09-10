@@ -1,0 +1,7 @@
+<% if false %>
+check process boundary-meter
+  with pidfile /var/vcap/sys/run/boundary-meter/boundary-meter.pid
+  start program "/var/vcap/jobs/boundary-meter/bin/monit_debugger boundary-meter_ctl '/var/vcap/jobs/boundary-meter/bin/boundary-meter_ctl start'"
+  stop program "/var/vcap/jobs/boundary-meter/bin/monit_debugger boundary-meter_ctl '/var/vcap/jobs/boundary-meter/bin/boundary-meter_ctl stop'"
+  group vcap
+<% end %>

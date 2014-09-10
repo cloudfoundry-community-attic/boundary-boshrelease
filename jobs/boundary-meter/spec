@@ -1,0 +1,46 @@
+---
+name: boundary-meter
+packages:
+- boundary-meter
+templates:
+  bin/boundary-meter_ctl: bin/boundary-meter_ctl
+  bin/monit_debugger: bin/monit_debugger
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+properties:
+  boundary_meter.org_id:
+    description: Boundary organization ID
+  boundary_meter.api_key:
+    description: Boundary API key
+
+  boundary_meter.global_tags:
+    default: []
+
+  boundary_meter.tags:
+    default: []
+
+  boundary_meter.interfaces:
+    description: explicity list interfaces to monitor (you can leave this empty)
+    default: []
+
+  boundary_meter.pcap_stats:
+    description: periodic stats on pcap interface
+    default: 0
+
+  boundary_meter.pcap_promisc:
+    description: promisc mode
+    default: 0
+
+  boundary_meter.enable_stun:
+    description: STUN support for public IP detection
+    default: 0
+
+  boundary_meter.api.hostname:
+    default: 'api.boundary.com'
+  boundary_meter.collector.hostname:
+    default: 'collector.boundary.com'
+  boundary_meter.collector.port:
+    default: 4740
+  boundary_meter.collector_uri:
+    default: "tls://collector.boundary.com:4740"

@@ -10,10 +10,8 @@ templates:
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
   config/boundary-meter.default.erb: config/boundary-meter.default
 properties:
-  boundary_meter.org_id:
-    description: Boundary organization ID
-  boundary_meter.api_key:
-    description: Boundary API key
+  boundary_meter.org_id_and_api_key:
+    description: <org-id>:<api-key> - Boundary organization ID & API key
 
   boundary_meter.global_tags:
     default: []

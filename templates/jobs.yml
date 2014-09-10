@@ -1,5 +1,7 @@
 meta:
   environment: ~
+  boundary_meter:
+    org_id_and_api_key: (( merge ))
 
 update:
   canaries: 1
@@ -19,6 +21,9 @@ jobs:
     persistent_disk: 0
     update:
       canaries: 10
+    properties:
+      boundary_meter:
+        org_id_and_api_key: (( meta.boundary_meter.org_id_and_api_key ))
 
 networks: (( merge ))
 

@@ -8,3 +8,8 @@ export NAME='<%= name %>'
 export JOB_INDEX=<%= index %>
 # full job name, like redis/0 or webapp/3
 export JOB_FULL="$NAME/$JOB_INDEX"
+export DEPLOYMENT_NAME='<%= spec.deployment %>'
+
+export ORG_ID_AND_API_KEY='<%= p("boundary_meter.org_id_and_api_key") %>'
+export BOUNDARY_API='<%= p("boundary_meter.api.hostname") %>'
+export NODE_NAME="$DEPLOYMENT_NAME-$NAME-$JOB_INDEX"

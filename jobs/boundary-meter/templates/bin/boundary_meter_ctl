@@ -14,18 +14,26 @@ case $1 in
   start)
     pid_guard $PIDFILE $JOB_NAME
 
+    source /var/vcap/packages/boundary-meter/profile.sh
+
     rm -rf /usr/lib/boundary
     ln -s /var/vcap/packages/boundary-meter/apt/usr/lib/boundary /usr/lib/boundary
 
-    exec chpst -u vcap:vcap boundary-meter -l create \
-      --pid-file $PIDFILE \
+    set -x
+
+    boundary-meter-provision -i $ORG_ID_AND_API_KEY -d /var/vcap/sys/run/boundary-meter
+
+    boundary-meter \
+      --debug 1 \
+      --daemon-mode --pid-file $PIDFILE \
       -p $ORG_ID_AND_API_KEY \
       -L $BOUNDARY_API \
-      -b /var/vcap/packages/boundary-meter/apt/etc/boundary \
-      --conf-file $JOB_DIR/config/boundary-meter.default \
+      -b /var/vcap/sys/run/boundary-meter \
+      --conf-file $JOB_DIR/config/boundary-meter.json \
+      --status-file $RUN_DIR/boundary-meter.status \
       --nodename $NODE_NAME \
          >>$LOG_DIR/$JOB_NAME.stdout.log \
-         2>>$LOG_DIR/$JOB_NAME.stderr.log
+         2>>$LOG_DIR/$JOB_NAME.stderr.log &
     ;;
 
   stop)

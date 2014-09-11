@@ -3,12 +3,13 @@ name: boundary-meter
 packages:
 - boundary-meter
 templates:
-  bin/boundary-meter_ctl: bin/boundary-meter_ctl
+  bin/boundary_meter_ctl: bin/boundary_meter_ctl
   bin/monit_debugger: bin/monit_debugger
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
   config/boundary-meter.default.erb: config/boundary-meter.default
+  config/boundary-meter.json.erb: config/boundary-meter.json
 properties:
   boundary_meter.org_id_and_api_key:
     description: <org-id>:<api-key> - Boundary organization ID & API key

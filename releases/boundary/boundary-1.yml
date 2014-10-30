@@ -1,0 +1,16 @@
+---
+packages:
+- name: boundary-meter
+  version: 0983ee52fa11613317a1fdca87243c1ead60f5b6
+  sha1: f7d81587483f8fd4b9ad2085fc23b176ddb4c970
+  fingerprint: 0983ee52fa11613317a1fdca87243c1ead60f5b6
+  dependencies: []
+jobs:
+- name: boundary-meter
+  version: a17337218966f835d8c92dfacbe6a5bbc1994174
+  fingerprint: a17337218966f835d8c92dfacbe6a5bbc1994174
+  sha1: 677866bfcc485fa49604ef85b44aacfcbf641495
+commit_hash: 07417c01
+uncommitted_changes: true
+name: boundary
+version: '1'

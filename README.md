@@ -1,51 +1,48 @@
-# BOSH Release for boundary
+BOSH Release for Boundary Meter
+===============================
 
-## Usage
+A BOSH release to add a Boundary meter to each Job VM in an existing deployment.
+
+Requirements
+------------
+
+-	Currently only supports Trusty stemcells.
+
+Usage
+-----
 
 To use this bosh release, first upload it to your bosh:
 
 ```
-bosh target BOSH_HOST
-git clone https://github.com/cloudfoundry-community/boundary-boshrelease.git
-cd boundary-boshrelease
 bosh upload release releases/boundary-1.yml
 ```
 
-For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a cluster:
+Add the `boundary` release to the target deployment manifst:
 
-```
-templates/make_manifest warden
-bosh -n deploy
-```
-
-For AWS EC2, create a single VM:
-
-```
-templates/make_manifest aws-ec2
-bosh -n deploy
+```yaml
+releases:
+  - name: cf
+    release: latest
+  - name: boundary
+    release: latest
 ```
 
-### Override security groups
+Add the `boundary-meter` job template to each job in the target deployment manifest:
 
-For AWS & Openstack, the default deployment assumes there is a `default` security group. If you wish to use a different security group(s) then you can pass in additional configuration when running `make_manifest` above.
-
-Create a file `my-networking.yml`:
-
-``` yaml
----
-networks:
-  - name: boundary1
-    type: dynamic
-    cloud_properties:
-      security_groups:
-        - boundary
+```yaml
+jobs:
+- name: runner_z1
+  templates:
+  - name: dea_next
+    release: cf
+  - name: boundary-meter
+    release: boundary
 ```
 
-Where `- boundary` means you wish to use an existing security group called `boundary`.
+Specify your API key in the global properties of the target deployment manifest:
 
-You now suffix this file path to the `make_manifest` command:
-
-```
-templates/make_manifest openstack-nova my-networking.yml
-bosh -n deploy
+```yaml
+properties:
+  boundary_meter:
+    org_id_and_api_key: HERE
 ```

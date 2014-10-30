@@ -23,6 +23,7 @@ case $1 in
 
     set -x
 
+    export PROVISIONHOSTNAME=$NODE_NAME
     boundary-meter-provision -i $ORG_ID_AND_API_KEY -d /var/vcap/sys/run/boundary-meter \
       >>$LOG_DIR/$JOB_NAME-provision.stdout.log \
       2>>$LOG_DIR/$JOB_NAME-provision.stderr.log
@@ -34,7 +35,6 @@ case $1 in
       -L $BOUNDARY_API \
       -b /var/vcap/sys/run/boundary-meter \
       --status-file $RUN_DIR/boundary-meter.status \
-      --nodename $NODE_NAME \
          >>$LOG_DIR/$JOB_NAME.stdout.log \
          2>>$LOG_DIR/$JOB_NAME.stderr.log &
     ;;

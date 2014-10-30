@@ -1,1 +1,5 @@
---- {}
+---
+apt/boundary-meter/boundary-meter_3.1.0-471~trusty_amd64.deb:
+  object_id: 4e54c729-174f-4b88-b789-a1e0493e3413
+  sha: f5cf381b4acd3f300a42acd5b3e51fcd3e58a801
+  size: 4311904

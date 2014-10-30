@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -e # exit immediately if a simple command exits with a non-zero status
 set -u # report the usage of uninitialized variables
 
 # Setup env vars and folders for the webapp_ctl script
@@ -19,9 +18,14 @@ case $1 in
     rm -rf /usr/lib/boundary
     ln -s /var/vcap/packages/boundary-meter/apt/usr/lib/boundary /usr/lib/boundary
 
+    rm -rf /etc/boundary
+    ln -s /var/vcap/packages/boundary-meter/apt/etc/boundary /etc/boundary
+
     set -x
 
-    boundary-meter-provision -i $ORG_ID_AND_API_KEY -d /var/vcap/sys/run/boundary-meter
+    boundary-meter-provision -i $ORG_ID_AND_API_KEY -d /var/vcap/sys/run/boundary-meter \
+      >>$LOG_DIR/$JOB_NAME-provision.stdout.log \
+      2>>$LOG_DIR/$JOB_NAME-provision.stderr.log
 
     boundary-meter \
       --debug 1 \
@@ -29,7 +33,6 @@ case $1 in
       -p $ORG_ID_AND_API_KEY \
       -L $BOUNDARY_API \
       -b /var/vcap/sys/run/boundary-meter \
-      --conf-file $JOB_DIR/config/boundary-meter.json \
       --status-file $RUN_DIR/boundary-meter.status \
       --nodename $NODE_NAME \
          >>$LOG_DIR/$JOB_NAME.stdout.log \
@@ -38,6 +41,11 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
+
+    ;;
+  status)
+    cat /var/vcap/sys/run/boundary-meter/boundary-meter.status
+    echo
 
     ;;
   *)

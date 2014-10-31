@@ -17,7 +17,13 @@ To use this bosh release, first upload it to your bosh:
 bosh upload release releases/boundary-1.yml
 ```
 
-Add the `boundary` release to the target deployment manifst:
+Or upload the release from a public URL:
+
+```
+bosh upload release https://boundary-boshrelease.s3.amazonaws.com/boshrelease-boundary-1.tgz
+```
+
+Add the `boundary` release to the target deployment manifest:
 
 ```yaml
 releases:

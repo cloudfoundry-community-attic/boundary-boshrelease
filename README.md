@@ -52,3 +52,17 @@ properties:
   boundary_meter:
     org_id_and_api_key: HERE
 ```
+
+Upgrading boundary-meter agent
+------------------------------
+
+The `boundary-meter` agent is published by Boundary as a Debian package.
+
+-	Latest stable agent https://apt-staging.boundary.com/ubuntu/pool/universe/b/boundary-meter/
+-	Latest edge agent https://apt.boundary.com/ubuntu/pool/universe/b/boundary-meter/
+
+Download the trusty/amd64 `.deb` (not `dbg`):
+
+![deb](http://cl.ly/image/440G1i1l1m2w/Index_of__ubuntu_pool_universe_b_boundary-meter.png)
+
+Replace the existing `.deb` in `blobs/apt/boundary-meter` and recreate the BOSH release, upload and deploy to test.
